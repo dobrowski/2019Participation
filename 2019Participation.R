@@ -30,13 +30,16 @@ ela <- ela %>%
 participation <- math %>%
     bind_rows(ela) %>%
     bind_rows(elpac) %>%
-    mutate(prate = as.numeric(prate))
+    mutate(prate = as.numeric(prate),
+           enrolled = as.numeric(enrolled),
+           tested = as.numeric(tested))
 
 
 participation.mry <- participation %>%
     filter(countyname == "Monterey")
 
 participation.mry.low <- participation.mry %>%
-    filter(prate < 95)
+    filter(prate < 95,
+           enrolled >= 30)
 
 
