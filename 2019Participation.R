@@ -43,3 +43,9 @@ participation.mry.low <- participation.mry %>%
            enrolled >= 30)
 
 
+report <- participation.mry.low %>%
+    filter(str_detect(districtname,"Salinas Union")) %>%   # Change to match district of interest
+    select(districtname, schoolname, test, studentgroup , prate) %>%
+    arrange(districtname, schoolname, test, studentgroup)
+
+clipr::write_clip(report)
